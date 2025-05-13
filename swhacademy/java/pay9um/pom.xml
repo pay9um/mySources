@@ -16,7 +16,6 @@
 
 	<modules>
 		<module>springboot</module>
-		<module>test</module>
 	</modules>
 
 	<properties>
