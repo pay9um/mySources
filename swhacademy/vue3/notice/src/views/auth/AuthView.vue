@@ -1,11 +1,12 @@
 <script setup>
 import { ref, watch } from 'vue'
 
+import UnderLineLink from '@/components/auth/UnderLineLink.vue'
+
 const id = ref('')
 const password = ref('')
 const errorMessage = ref('')
-
-
+const isSignIn = ref(true)
 // const showIdMessage = ref(false)
 // const showPasswordMessage = ref(false)
 // const isPossibleId = ref(false)
@@ -40,13 +41,13 @@ const errorMessage = ref('')
             <div class="row">
               <div class="mx-auto col-xl-4 col-lg-5 col-md-7 d-flex flex-column">
                 <div class="card">
-                  <div class="card-header mx-4 bg-black border-0 rounded py-4" style="margin-top: -3rem;">
-                    <div class="container text-white">
+                  <div class="card-header mx-4 border-0 rounded py-4 bg-black text-white" style="margin-top: -3rem;">
+                    <div class="container">
                       <strong class="fs-5">로그인</strong>
                     </div>
                   </div>
                   <div class="card-body">
-                    <form class="mt-4">
+                    <form class="mt-4" v-if="isSignIn">
                       <div class="input-group mb-3">
                         <span class="input-group-text bg-black text-white">
                           <i class="bi bi-person"></i>
@@ -71,22 +72,21 @@ const errorMessage = ref('')
                         </div>
                       </div> -->
                     </form>
-                    <small>
-                      <a href="#" class="text-decoration-none text-secondary">
-                        Forgot Password?
-                      </a>
-                    </small>
+
                     <div class="container mt-4">
                       <div class="mb-3">
                         <button class="btn btn-dark w-100 py-3 fw-bold rounded-pill">
-                          Sign In
+                          로그인
                         </button>
                       </div>
-                      <div class="mb-3">
-                        <button class="btn btn-outline-dark w-100 py-3 fw-bold rounded-pill">
-                          Sign Up
-                        </button>
-                      </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+                      <UnderLineLink href="#" text="아이디 찾기" />
+                      <div class="vr"></div>
+                      <UnderLineLink href="#" text="비밀번호 찾기" />
+                      <div class="vr"></div>
+                      <UnderLineLink href="#" text="회원가입" />
                     </div>
                   </div>
                 </div>
