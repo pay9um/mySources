@@ -33,19 +33,17 @@ const isSignIn = ref(true)
 </script>
 
 <template>
-  <div class="position-absolute start-0 top-0 w-100 h-100 bg-dark bg-gradient">
-    <main class="container">
-      <section>
-        <div class="min-vh-100 d-flex align-items-center">
-          <div class="container">
-            <div class="row">
-              <div class="mx-auto col-xl-4 col-lg-5 col-md-7 d-flex flex-column">
-                <RouterView />
-              </div>
+  <main class="container my-5">
+    <section>
+      <div class="d-flex align-items-center">
+        <div class="container">
+          <div class="row">
+            <div class="mx-auto col-xl-4 col-lg-5 col-md-7 d-flex flex-column">
+              <RouterView />
             </div>
           </div>
         </div>
-      </section>
-    </main>
-  </div>
+      </div>
+    </section>
+  </main>
 </template>

@@ -1,5 +1,15 @@
-import { createStore } from 'vuex'
+import { defineStore } from 'pinia'
 
-const stroe = createStore({
+const defaultStore = defineStore('default', {
+  state: () => ({
+    showNavbar: true,
+    backgroundColor: 'light',
+  }),
+  actions: {
 
+  },
+  getters: {
+  },
 })
+
+export default defaultStore

@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+import PalleryView from '@/views/PalleryView.vue'
+
 import AuthView from '@/views/auth/AuthView.vue'
 import SigninView from '@/views/auth/SigninView.vue'
 import SignupView from '@/views/auth/SignupView.vue'
@@ -9,7 +11,12 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/auth',
+      redirect: '/pallery',
+    },
+    {
+      path: '/pallery',
+      name: 'pallery',
+      component: PalleryView,
     },
     {
       path: '/auth',
