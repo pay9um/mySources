@@ -7,10 +7,6 @@ const title = '로그인'
 const id = ref('')
 const password = ref('')
 const errorMessage = ref('')
-const link = ref({
-  path: '/auth/signup',
-  text: '회원가입',
-})
 
 const submitForm = () => {
 
@@ -42,12 +38,12 @@ const submitForm = () => {
         </div>
       </div>
 
-      <div class="d-flex justify-content-center">
+      <div class="d-flex flex-row justify-content-center">
         <UnderLineLink href="#" text="아이디 찾기" />
         <div class="vr"></div>
         <UnderLineLink href="#" text="비밀번호 찾기" />
         <div class="vr"></div>
-        <UnderLineLink :href="link.path" :text="link.text" />
+        <UnderLineLink href="/auth/signup" text="회원가입" />
       </div>
     </div>
   </div>

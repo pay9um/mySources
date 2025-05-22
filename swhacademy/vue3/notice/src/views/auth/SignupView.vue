@@ -1,22 +1,38 @@
 <script setup>
-import { ref, watch } from 'vue'
-
+import { reactive, ref, watch } from 'vue'
 import UnderLineLink from '@/components/auth/UnderLineLink.vue'
 import IconInput from '@/components/auth/IconInput.vue'
+import axios from 'axios'
 
 const title = ref('회원가입')
-const id = ref('')
-const name = ref('')
-const password = ref('')
-const passwordCheck = ref('')
-const errorMessage = ref('')
-const link = ref({
-  path: '/auth/signin',
-  text: '로그인',
+const form = reactive({
+  id: '',
+  name: '',
+  password: '',
+  passwordCheck: '',
 })
 
-const submitForm = () => {
-  
+const idMessage = ref('')
+
+function runParentFunction() {
+  console.log(123123123)
+}
+
+async function submitForm() {
+  try {
+    const response = await axios.post('http://localhost:8080/api/auth/signup', {
+      id: form.id,
+      name: form.name,
+      password: form.password,
+      passwordCheck: form.passwordCheck
+    })
+
+    console.log('회원가입 성공:', response.data)
+    alert('회원가입 완료!')
+  } catch (error) {
+    console.error('회원가입 실패:', error.response?.data || error.message)
+    alert('회원가입 실패: ' + (error.response?.data?.message || '알 수 없는 오류'))
+  }
 }
 </script>
 
@@ -29,14 +45,15 @@ const submitForm = () => {
     </div>
     <div class="card-body">
       <form class="mt-4" name="formup">
-        <IconInput icon="bi bi-person" type="text" placeholder="ID" v-model="id" />
-        <IconInput icon="bi bi-person" type="text" placeholder="NAME" v-model="name" />
-        <IconInput icon="bi bi-lock" type="password" placeholder="PASSWORD" v-model="password" />
-        <IconInput icon="bi bi-lock" type="password" placeholder="PASSWORD CHECK" v-model="passwordCheck" />
-        <p class="m-0 text-start text-danger">
+        <IconInput icon="bi bi-person" type="text" placeholder="ID" :check="true" :sub-message="idMessage"
+          v-model="form.id" @child-clicked="runParentFunction" />
+        <IconInput icon="bi bi-person-bounding-box" type="text" placeholder="NAME" v-model="form.name" />
+        <IconInput icon="bi bi-lock" type="password" placeholder="PASSWORD" v-model="form.password" />
+        <IconInput icon="bi bi-lock" type="password" placeholder="PASSWORD CHECK" v-model="form.passwordCheck" />
+        <!-- <p class="m-0 text-start text-danger">
           &nbsp;
           <small>{{ errorMessage }}</small>
-        </p>
+        </p> -->
       </form>
 
       <div class="container mt-2 mb-4">
@@ -52,7 +69,7 @@ const submitForm = () => {
         <div class="vr"></div>
         <UnderLineLink href="#" text="비밀번호 찾기" />
         <div class="vr"></div>
-        <UnderLineLink :href="link.path" :text="link.text" />
+        <UnderLineLink href="/auth/signin" text="로그인" />
       </div>
     </div>
   </div>

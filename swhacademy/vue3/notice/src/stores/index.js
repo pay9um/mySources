@@ -6,7 +6,9 @@ const defaultStore = defineStore('default', {
     backgroundColor: 'light',
   }),
   actions: {
-
+    changeShowNavbar() {
+      this.showNavbar = !this.showNavbar
+    }
   },
   getters: {
   },
